@@ -1,0 +1,370 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300&display=swap');
+
+:root {
+  --primary: rgb(33, 42, 60);
+  --text: rgb(182, 199, 215);
+  --light-red: hsl(0, 40%, 67%);
+  --grey: rgb(101, 97, 101);
+  --red: hsl(0, 50%, 55%);
+  --yellow: rgb(231, 189, 64);
+  --green: rgb(116, 220, 167);
+  --blue-green: rgb(58, 189, 176);
+  --blue: rgb(116, 174, 220);
+  --violet: rgb(186, 200, 249);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* outline: 1px dotted white; */
+}
+
+/* typography */
+.link {
+  text-decoration: none;
+  color: inherit;
+  transition: 1s;
+
+  & :hover {
+    color: var(--green);
+  }
+}
+
+.hired {
+  color: var(--blue);
+}
+
+.interviewing {
+  color: var(--blue-green)
+}
+
+.no-response {
+  color: var(--grey);
+}
+
+.rejected {
+  color: var(--red);
+}
+
+.pending,
+.active {
+  color: var(--green);
+}
+
+.active {
+  outline: 2px solid var(--green);
+}
+
+.rate {
+  color: var(--violet);
+}
+
+.waitlisted {
+  color: var(--yellow);
+}
+
+.message {
+  display: inline-block;
+  text-align: center;
+}
+
+/* hidden */
+.display-md {
+  display: none;
+}
+
+/* divs */
+#root {
+  display: flex;
+  height: 100vh;
+  overflow-y: hidden;
+  font-family: 'Assistant', sans-serif;
+  white-space: pre-line;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  background-color: var(--primary);
+  color: var(--text);
+  font-variant: small-caps;
+  flex-grow: 1;
+}
+
+/* desktop flex */
+footer,
+header,
+main {
+  display: flex;
+  width: inherit;
+}
+
+footer {
+  justify-content: center;
+}
+
+footer,
+header {
+  padding: .25rem .5rem;
+  align-items: baseline;
+}
+
+header {
+  justify-content: space-between;
+  background-color: var(--primary);
+}
+
+main {
+  flex-direction: column;
+  background-color: transparent;
+  height: 100%;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem .5rem .25rem .5rem;
+  overflow-y: scroll;
+}
+
+nav {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+section {
+  outline: 1px solid var(--blue);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  width: inherit;
+}
+
+textarea {
+  width: 100%;
+  resize: none;
+}
+
+.wrapper {
+  gap: .25rem;
+}
+
+fieldset {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: .25rem .5rem;
+  transition: 1s border-color;
+  border-radius: .5rem;
+  border-color: var(--blue);
+
+  &:hover {
+    border-color: var(--text);
+  }
+}
+
+input,
+button {
+  border-radius: 4rem;
+  padding: .5rem;
+}
+
+input,
+textarea {
+  background-color: var(--blue);
+  border: none;
+  transition: 1s outline, 1s background-color;
+
+  &:focus {
+    outline: none;
+    background-color: var(--text);
+  }
+}
+
+textarea {
+  border-radius: 1rem;
+  padding: .5rem;
+}
+
+button {
+  font-variant: small-caps;
+  background-color: transparent;
+  border: 1px solid var(--blue);
+  color: var(--blue);
+  transition: 1s border-color, 1s color;
+}
+
+button:active,
+button:hover {
+  border-color: var(--green);
+  color: var(--green);
+}
+
+.delete {
+  color: var(--light-red);
+  border: none;
+  transition: color 1s, text-shadow 1s;
+
+  &:hover {
+    color: var(--red);
+    text-shadow: 0 0 .125rem var(--red);
+  }
+}
+
+/* SHARED | Home.js, Job.js*/
+ul {
+  list-style: none;
+}
+
+.list-section {
+  gap: .5rem;
+  overflow-y: scroll;
+  border: 1px solid var(--primary);
+
+  & .list-header {
+    position: sticky;
+    top: 0;
+    background-color: var(--primary);
+    box-shadow: 0 -.55rem 0 .5rem var(--primary);
+    border-radius: .5rem;
+  }
+
+  & article:nth-child(2) {
+    font-size: 1rem;
+    position: sticky;
+    top: 2.5rem;
+    background-color: var(--primary);
+    box-shadow: 0 0 0 .6rem var(--primary);
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .display-md {
+    display: initial;
+  }
+
+  .hide-m {
+    display: none;
+  }
+
+  body,
+  input,
+  textarea,
+  button {
+    font-size: 1rem;
+  }
+
+  header {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  main {
+    gap: .5rem;
+  }
+
+  #home-page {
+    & .message {
+      grid-column: 1 / -1;
+      width: 50vw;
+      justify-self: center;
+    }
+  }
+
+  section {
+    gap: 1.25rem;
+  }
+
+  .list-section {
+    height: 100%;
+  }
+
+  nav {
+    flex-grow: 0;
+    gap: 1rem;
+  }
+
+  /* SHARED | Home.js, Job.js, Profile.js */
+  #home-page,
+  #job-page,
+  #profile-page {
+    display: grid;
+    align-items: flex-start;
+    grid-template-columns: 15rem auto;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "a b"
+      "a c";
+
+    & .aside {
+      grid-area: a;
+      height: 100%;
+      align-items: flex-start;
+    }
+
+    & .profile-section {
+      grid-area: b;
+    }
+
+    & .list-section {
+      grid-area: c;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  footer {
+    font-size: .85rem;
+  }
+
+  #home-page,
+  #job-page,
+  #profile-page {
+    grid-template-columns: 20rem auto;
+
+    & .aside form {
+      width: 100%;
+    }
+
+    & .form-section,
+    .details-section {
+      height: 100%;
+    }
+  }
+
+  button {
+    padding: .15rem;
+  }
+
+  input[type=date] {
+    width: fit-content;
+  }
+
+  fieldset {
+    grid-column: span 1;
+  }
+
+}
+
+@media print {
+
+  header,
+  footer,
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  #root {
+    height: initial;
+    overflow-y: initial;
+  }
+}
